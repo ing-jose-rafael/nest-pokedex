@@ -35,7 +35,7 @@ export class SeedService {
       pokemonToInsert.push({ name, no });
       
     });
-    await this.pokemonModule.insertMany(pokemonToInsert);
+    await this.pokemonModule.insertMany( pokemonToInsert );
     return `Seed Executed`;
   }
 
