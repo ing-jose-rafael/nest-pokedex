@@ -63,8 +63,8 @@ export class PokemonService {
   }
 
   async remove(id: string) {
-    const { deletedCount } = await this.pokemonModule.deleteOne({ _id: id });
-    if (  deletedCount === 0 ) throw new BadRequestException(`Pokemon wiht "${ id }" mot found`);
+    const { deletedCount } = await this.pokemonModule.deleteOne({ _id: id });
+    if ( deletedCount === 0 ) throw new BadRequestException(`Pokemon wiht "${ id }" mot found`);
     return true;
   }
 
