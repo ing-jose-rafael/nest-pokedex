@@ -27,7 +27,12 @@ $ npm i @nestjs/cli
 # DB
 $ docker-compose up -d 
 ```
+- Reconstruir la DB
 
+```bash
+# realizar la peticion get a la ruta
+http://localhost:3000/api/V2/seed
+```
  
 
 ```bash
