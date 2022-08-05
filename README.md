@@ -41,13 +41,26 @@ $ yarn start:dev
 # realizar la peticion get a la ruta
 http://localhost:3000/api/V2/seed
 ```
- 
-
-
-
-## Stack usuado
+ ## Stack usuado
 - MongoDB
 - NestJS
+ # Production Build
+ 1. crear el archivo ```.env.prod```
+ 2. Llenar las variables de entorno de prod
+ 3. Crear la nueva imagen
+ ```bash
+# creando la nueva imagen
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
+
+# Notas
+heroku redeploy sin cambios:
+```bash 
+git commit --allow-empty -m "Tigger Heroku deploy"
+git push heroku main 
+```
+
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
