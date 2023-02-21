@@ -13,13 +13,16 @@ import { JoiValidationSchema } from './config/joi.validations';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load:[EnvConfiguration],
+      load: [EnvConfiguration],
       validationSchema: JoiValidationSchema,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname,'..','public'), }),
-    MongooseModule.forRoot( process.env.MONGODB ), // referencia DB  
-    PokemonModule, CommonModule, SeedModule
+      rootPath: join(__dirname, '..', 'public'),
+    }),
+    MongooseModule.forRoot(process.env.MONGODB), // referencia DB
+    PokemonModule,
+    CommonModule,
+    SeedModule,
   ],
 })
 export class AppModule {}

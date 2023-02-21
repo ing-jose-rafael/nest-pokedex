@@ -5,8 +5,8 @@ import { PokemonModule } from 'src/pokemon/pokemon.module';
 import { CommonModule } from 'src/common/common.module';
 
 @Module({
-  imports:[PokemonModule, CommonModule],
+  imports: [PokemonModule, CommonModule],
   controllers: [SeedController],
-  providers: [SeedService]
+  providers: [SeedService],
 })
 export class SeedModule {}
