@@ -6,12 +6,11 @@
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    
 
-## Ejecutar en desarrollo
+# Ejecutar en desarrollo
 
-- clonar el repositorio.
-- Instalaciones.
+1. Clonar el repositorio.
+2. Instalaciones.
 
 ```bash
 # ejecutar
@@ -21,45 +20,53 @@ $ yarn install
 $ npm i @nestjs/cli
 ```
 
-- Levantar la Base datos
+3. Levantar la Base datos
 
 ```bash
 # DB
-$ docker-compose up -d 
+$ docker-compose up -d
 ```
-- Clonar el archivo __.env.template__ y renombar la copia __.env__
-- LLenar las variables de entorno definidas en el __.env__ 
-- Ejecutar la aplicación en dev:
+
+4. Clonar el archivo **.env.template** y renombar la copia **.env**
+5. LLenar las variables de entorno definidas en el **.env**
+6. Ejecutar la aplicación en dev:
+
 ```bash
 # watch mode
 $ yarn start:dev
 ```
 
-- Reconstruir la DB
+7. Reconstruir la DB
 
 ```bash
 # realizar la peticion get a la ruta
 http://localhost:3000/api/V2/seed
 ```
- ## Stack usuado
+
+## Stack usuado
+
 - MongoDB
 - NestJS
- # Production Build
- 1. crear el archivo ```.env.prod```
- 2. Llenar las variables de entorno de prod
- 3. Crear la nueva imagen
- ```bash
+
+# Production Build
+
+1.  crear el archivo `.env.prod`
+2.  Llenar las variables de entorno de prod
+3.  Crear la nueva imagen
+
+```bash
 # creando la nueva imagen
 docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
 ```
 
 # Notas
-heroku redeploy sin cambios:
-```bash 
-git commit --allow-empty -m "Tigger Heroku deploy"
-git push heroku main 
-```
 
+heroku redeploy sin cambios:
+
+```bash
+git commit --allow-empty -m "Tigger Heroku deploy"
+git push heroku main
+```
 
 ## License
 
