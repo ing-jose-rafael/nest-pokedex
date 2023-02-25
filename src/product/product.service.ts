@@ -23,7 +23,13 @@ export class ProductService {
   }
 
   findAll() {
-    return this.productModule.find().select(`-__v`);
+    /**
+     * En MongoDB, los Join son denominados “Populates”, lo que hará
+     * Mongo aquí es ir a buscar el objeto a la colección a la cual
+     * pertenece. Es momento de realizar un “JOIN” para traer la
+     * información del mismo.
+     */
+    return this.productModule.find().populate('brand').select(`-__v`);
   }
 
   findOne(id: number) {

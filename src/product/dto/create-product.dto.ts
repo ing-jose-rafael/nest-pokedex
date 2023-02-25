@@ -1,4 +1,5 @@
 import {
+  IsMongoId,
   IsNotEmpty,
   IsNumber,
   IsPositive,
@@ -44,8 +45,7 @@ export class CreateProductDto {
   // relacion embebida
   readonly category: CreateCategoryDto;
 
-  /*@IsNotEmpty()
+  @IsNotEmpty()
   @IsMongoId()
   readonly brand: string;
-  */
 }

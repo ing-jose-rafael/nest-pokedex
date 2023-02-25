@@ -1,5 +1,6 @@
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { Brand } from './brand.entity';
 
 @Schema()
 export class Product extends Document {
@@ -18,7 +19,7 @@ export class Product extends Document {
   @Prop()
   image: string;
 
-  //🚨 relaciones embebidas
+  //🚨 Un producto tendrá una Categoria embebidas: relaciones embebidas
   @Prop(
     raw({
       name: { type: String },
@@ -26,6 +27,10 @@ export class Product extends Document {
     }),
   )
   category: Record<string, any>;
+
+  //🚨 creamos un esquema Brand. Un producto tendrá la referencia de un Brand en su interior.
+  @Prop({ type: Types.ObjectId, ref: Brand.name })
+  brand: Brand | Types.ObjectId; // 👈 para indicarle a Mongoose qué tiene que esperar en esa propiedad.puede ser Brand o ObjectId
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
