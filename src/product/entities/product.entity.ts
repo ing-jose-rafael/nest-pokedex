@@ -1,6 +1,7 @@
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { Brand } from './brand.entity';
+import { Size, SizeSchema } from './size.entity';
 
 @Schema()
 export class Product extends Document {
@@ -34,14 +35,9 @@ export class Product extends Document {
 
   //🚨 creamos un esquema sizes. Un producto tendrá la referencia de un o muchas Sizes en su interior: .relaciones 1:M embebidas
   @Prop({
-    type: [
-      {
-        id: { type: Number },
-        name: { type: String },
-      },
-    ],
+    type: [SizeSchema],
   })
-  sizes: Types.Array<Record<string, any>>;
+  sizes: Types.Array<Size>;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

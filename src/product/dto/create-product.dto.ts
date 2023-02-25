@@ -52,10 +52,9 @@ export class CreateProductDto {
   @IsMongoId()
   readonly brand: string;
 
-  // @IsString({ each: true })
   @IsNotEmpty()
   @IsArray()
-  @ValidateNested()
+  @ValidateNested({ each: true })
   @Type(() => CreateSizesDto)
-  readonly sizes: CreateSizesDto;
+  readonly sizes: CreateSizesDto[]; // 👈 1:N
 }
