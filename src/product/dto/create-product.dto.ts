@@ -13,7 +13,7 @@ export class CreateProductDto {
   @IsNotEmpty()
   @MinLength(1)
   // @ApiProperty({ description: `product's name` })
-  readonly name: string;
+  name: string;
 
   @IsString()
   @IsNotEmpty()
