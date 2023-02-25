@@ -31,6 +31,17 @@ export class Product extends Document {
   //🚨 creamos un esquema Brand. Un producto tendrá la referencia de un Brand en su interior.
   @Prop({ type: Types.ObjectId, ref: Brand.name })
   brand: Brand | Types.ObjectId; // 👈 para indicarle a Mongoose qué tiene que esperar en esa propiedad.puede ser Brand o ObjectId
+
+  //🚨 creamos un esquema sizes. Un producto tendrá la referencia de un o muchas Sizes en su interior: .relaciones 1:M embebidas
+  @Prop({
+    type: [
+      {
+        id: { type: Number },
+        name: { type: String },
+      },
+    ],
+  })
+  sizes: Types.Array<Record<string, any>>;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

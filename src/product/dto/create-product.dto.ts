@@ -1,4 +1,6 @@
+import { Type } from 'class-transformer';
 import {
+  IsArray,
   IsMongoId,
   IsNotEmpty,
   IsNumber,
@@ -10,6 +12,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { CreateCategoryDto } from './category.dtos';
+import { CreateSizesDto } from './size.dtos';
 
 export class CreateProductDto {
   @IsString()
@@ -48,4 +51,11 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsMongoId()
   readonly brand: string;
+
+  // @IsString({ each: true })
+  @IsNotEmpty()
+  @IsArray()
+  @ValidateNested()
+  @Type(() => CreateSizesDto)
+  readonly sizes: CreateSizesDto;
 }
