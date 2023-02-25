@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { FilterQuery, Model } from 'mongoose';
+import { FilterProductsDto } from 'src/pokemon/dto/filter-products.dto';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
@@ -22,14 +23,27 @@ export class ProductService {
     }
   }
 
-  findAll() {
+  findAll(params: FilterProductsDto) {
+    const filters: FilterQuery<Product> = {};
+    const { limit = 3, offset = 0, minPrice, maxPrice } = params;
+    // agrega filtro de manera dinamica
+    if (minPrice && maxPrice) {
+      // $gte equivalente a >=
+      // $lte equivalente a <=
+      filters.price = { $gte: minPrice, $lte: maxPrice }; // 👈 filtra por un rango
+    }
     /**
      * En MongoDB, los Join son denominados “Populates”, lo que hará
      * Mongo aquí es ir a buscar el objeto a la colección a la cual
      * pertenece. Es momento de realizar un “JOIN” para traer la
      * información del mismo.
      */
-    return this.productModule.find().populate('brand').select(`-__v`);
+    return this.productModule
+      .find(filters)
+      .skip(offset)
+      .limit(limit)
+      .populate('brand')
+      .select(`-__v`);
   }
 
   findOne(id: number) {

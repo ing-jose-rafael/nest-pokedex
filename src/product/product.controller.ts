@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { FilterProductsDto } from 'src/pokemon/dto/filter-products.dto';
 
 @Controller('product')
 export class ProductController {
@@ -21,8 +23,8 @@ export class ProductController {
   }
 
   @Get()
-  findAll() {
-    return this.productService.findAll();
+  findAll(@Query() params: FilterProductsDto) {
+    return this.productService.findAll(params);
   }
 
   @Get(':id')
