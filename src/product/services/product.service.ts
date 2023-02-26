@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
 import { FilterProductsDto } from 'src/pokemon/dto/filter-products.dto';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { Product } from './entities/product.entity';
+import { CreateProductDto } from '../dto/create-product.dto';
+import { UpdateProductDto } from '../dto/update-product.dto';
+import { Product } from '../entities/product.entity';
 
 @Injectable()
 export class ProductService {
@@ -43,6 +43,7 @@ export class ProductService {
       .skip(offset)
       .limit(limit)
       .populate('brand')
+      .populate('imagenes')
       .select(`-__v`);
   }
 

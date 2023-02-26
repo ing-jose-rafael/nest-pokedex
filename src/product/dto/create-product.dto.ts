@@ -6,7 +6,6 @@ import {
   IsNumber,
   IsPositive,
   IsString,
-  IsUrl,
   Min,
   MinLength,
   ValidateNested,
@@ -38,10 +37,10 @@ export class CreateProductDto {
   // ApiProperty()
   readonly stock: number;
 
-  @IsUrl()
+  @IsArray()
   @IsNotEmpty()
   // ApiProperty()
-  readonly image: string;
+  readonly imagenes: string[];
 
   @IsNotEmpty()
   @ValidateNested() // 👈 para validar en cascada

@@ -1,6 +1,7 @@
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { Brand } from './brand.entity';
+import { Imagene } from './imagen.entity';
 import { Size, SizeSchema } from './size.entity';
 
 @Schema()
@@ -16,9 +17,6 @@ export class Product extends Document {
 
   @Prop({ type: Number })
   stock: number;
-
-  @Prop()
-  image: string;
 
   //🚨 Un producto tendrá una Categoria embebidas: relaciones embebidas
   @Prop(
@@ -38,6 +36,10 @@ export class Product extends Document {
     type: [SizeSchema],
   })
   sizes: Types.Array<Size>;
+
+  //🚨 1:N refencial
+  @Prop({ type: [{ type: Types.ObjectId, ref: Imagene.name }] }) // 👈 La propiedad correspondiente al esquema que contendrá el array de referencias.
+  imagenes: Types.Array<Imagene>; // También, tienes que tipar la propiedad con Types.Array<> proveniente desde mongoose.
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
